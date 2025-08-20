@@ -7,11 +7,14 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://raw.githubusercontent.com/tu-usuario/juego-romantico/main/foto.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: #1c1c1c;
       color: #fff;
       padding: 20px;
-      backdrop-filter: blur(5px);
+      background-image: url('foto.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      backdrop-filter: blur(4px);
     }
     h1, h2 {
       text-align: center;
@@ -50,6 +53,9 @@
       display: block;
       margin: 20px auto;
       border-radius: 10px;
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
     }
   </style>
 </head>
@@ -59,11 +65,71 @@
   <p style="text-align:center;">Responde con el corazón. Si aciertas todo, desbloquearás algo muy especial...</p>
 
   <!-- Canción embebida -->
-  <iframe width="100%" height="80" src="https://www.youtube.com/embed/2vZ2zZzZzZ0?autoplay=0" title="Tu jardín con enanitos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/2vZ2zZzZzZ0" title="Tu jardín con enanitos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
   <div id="quiz">
-    <!-- Aquí van las preguntas, igual que antes -->
-    <!-- Puedes copiar las preguntas del código anterior aquí -->
+    <div class="question" id="q1">
+      <p>¿En dónde fue nuestro primer beso?</p>
+      <button onclick="checkAnswer('q1', 'a')">a) En un 7eleven ✅</button>
+      <button onclick="checkAnswer('q1', 'b')">b) En un parque</button>
+      <button onclick="checkAnswer('q1', 'c')">c) En una fiesta</button>
+    </div>
+
+    <div class="question hidden" id="q2">
+      <p>¿En dónde nos conocimos por primera vez?</p>
+      <button onclick="checkAnswer('q2', 'a')">a) En una cancha de fútbol ✅</button>
+      <button onclick="checkAnswer('q2', 'b')">b) En el banco</button>
+      <button onclick="checkAnswer('q2', 'c')">c) En una cafetería</button>
+    </div>
+
+    <div class="question hidden" id="q3">
+      <p>¿Quién estaba locamente enamorada de la otra desde el primer día que hablamos?</p>
+      <button onclick="checkAnswer('q3', 'a')">a) Aidé de Alma... (Y todavía lo estoy) ✅</button>
+      <button onclick="checkAnswer('q3', 'b')">b) Las dos</button>
+      <button onclick="checkAnswer('q3', 'c')">c) Nadie</button>
+    </div>
+
+    <div class="question hidden" id="q4">
+      <p>¿Cuál fue el primer regalo de cumpleaños que te di?</p>
+      <button onclick="checkAnswer('q4', 'a')">a) Un dije de corazón con mensaje oculto ✅</button>
+      <button onclick="checkAnswer('q4', 'b')">b) Una carta</button>
+      <button onclick="checkAnswer('q4', 'c')">c) Un peluche</button>
+    </div>
+
+    <div class="question hidden" id="q5">
+      <p>¿Qué significado tiene el tatuaje 00:00 que me realicé por ti?</p>
+      <button onclick="checkAnswer('q5', 'a')">a) Nuevos comienzos y despertar espiritual ✅</button>
+      <button onclick="checkAnswer('q5', 'b')">b) Hora de dormir</button>
+      <button onclick="checkAnswer('q5', 'c')">c) Fin del mundo</button>
+    </div>
+
+    <div class="question hidden" id="q6">
+      <p>¿Qué animal odiabas y ahora amas a uno?</p>
+      <button onclick="checkAnswer('q6', 'a')">a) Gato, Bonye ✅</button>
+      <button onclick="checkAnswer('q6', 'b')">b) Perro</button>
+      <button onclick="checkAnswer('q6', 'c')">c) Conejo</button>
+    </div>
+
+    <div class="question hidden" id="q7">
+      <p>¿De quién es la frase del rompecabezas que te di?</p>
+      <button onclick="checkAnswer('q7', 'a')">a) Julio Cortázar ✅</button>
+      <button onclick="checkAnswer('q7', 'b')">b) Pablo Neruda</button>
+      <button onclick="checkAnswer('q7', 'c')">c) Mario Benedetti</button>
+    </div>
+
+    <div class="question hidden" id="q8">
+      <p>El 7 de diciembre del 2022 te di una carta y te dije que no podrías sacarla, ¿Dentro de qué estaba?</p>
+      <button onclick="checkAnswer('q8', 'a')">a) Un huevo ✅</button>
+      <button onclick="checkAnswer('q8', 'b')">b) Una caja</button>
+      <button onclick="checkAnswer('q8', 'c')">c) Un sobre</button>
+    </div>
+
+    <div class="question hidden" id="q9">
+      <p>¿En qué mes y año nos casamos en una kermés?</p>
+      <button onclick="checkAnswer('q9', 'a')">a) Febrero 2023 ✅</button>
+      <button onclick="checkAnswer('q9', 'b')">b) Marzo 2022</button>
+      <button onclick="checkAnswer('q9', 'c')">c) Enero 2024</button>
+    </div>
   </div>
 
   <div id="final-success" class="final hidden">
@@ -79,8 +145,20 @@
   </div>
 
   <script>
-    // Aquí va el mismo script de validación que te di antes
-  </script>
+    let correctAnswers = 0;
+    let currentQuestion = 1;
 
-</body>
-</html>
+    function checkAnswer(questionId, selected) {
+      const correct = {
+        q1: 'a', q2: 'a', q3: 'a', q4: 'a', q5: 'a',
+        q6: 'a', q7: 'a', q8: 'a', q9: 'a'
+      };
+
+      if (selected === correct[questionId]) {
+        correctAnswers++;
+      }
+
+      document.getElementById(questionId).classList.add('hidden');
+      currentQuestion++;
+
+      const nextId = '
