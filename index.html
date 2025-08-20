@@ -33,6 +33,16 @@
     #video {
       margin: 20px 0;
     }
+    #quiz {
+      min-height: 200px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #2c003e;
+      border-radius: 10px;
+      z-index: 1;
+      position: relative;
+    }
     #openLetter {
       display: none;
       margin-top: 30px;
@@ -64,6 +74,7 @@
       font-size: 2em;
       pointer-events: none;
       animation: fall 3s linear forwards;
+      z-index: 0;
     }
     @keyframes fall {
       0% { transform: translateY(-50px) scale(1); opacity: 1; }
@@ -171,10 +182,10 @@
       letter.innerHTML = `
         <p>${message}</p>
         <div class="carta-final">
-          <h2>💌 No sé amar en silencio</h2>
-          <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
-          <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
-          <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
-          <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
-          <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
-          </div>
+  <h2>💌 No sé amar en silencio</h2>
+  <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
+  <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
+  <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
+  <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
+  <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
+</div>
