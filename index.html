@@ -7,7 +7,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #fff0f5;
+      background: linear-gradient(to bottom, #ffe4e1, #fff0f5);
       overflow-x: hidden;
     }
     header {
@@ -31,7 +31,7 @@
       top: -50px;
       font-size: 24px;
       color: #ff1493;
-      animation: fall 5s linear infinite;
+      animation: fall 6s linear infinite;
     }
     @keyframes fall {
       0% {top: -50px; opacity: 1;}
@@ -83,7 +83,7 @@
 </head>
 <body>
   <header>Latidos 💓</header>
-  <iframe src="https://www.youtube.com/embed/YOUTUBE_ID_AQUI" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/V7q1jN7k5lg" allowfullscreen></iframe>
 
   <!-- Corazones animados -->
   <div class="heart" style="left: 10%;">💖</div>
@@ -94,21 +94,34 @@
 
   <!-- Preguntas -->
   <div class="question-box" id="q1">
-    <div class="question">¿Cuál fue la primera canción que escuchamos juntas?</div>
+    <div class="question">¿Qué parte de mí dijiste que era tu lugar favorito?</div>
     <div class="options">
-      <label><input type="radio" name="q1" value="correct" /> La que pusiste en el coche esa noche</label>
-      <label><input type="radio" name="q1" value="wrong" /> Despacito</label>
-      <label><input type="radio" name="q1" value="wrong" /> Bohemian Rhapsody</label>
+      <label><input type="radio" name="q1" value="correct" /> Mis clavículas</label>
+      <label><input type="radio" name="q1" value="wrong" /> Mis ojos</label>
+      <label><input type="radio" name="q1" value="wrong" /> Mis manos</label>
+      <label><input type="radio" name="q1" value="wrong" /> Mi voz</label>
     </div>
     <button onclick="nextQuestion('q1','q2')">Siguiente</button>
   </div>
 
   <div class="question-box" id="q2">
-    <div class="question">¿Qué color dijiste que te recuerda a mí?</div>
+    <div class="question">¿Qué dijiste que querías hacer cuando me vieras de nuevo?</div>
     <div class="options">
-      <label><input type="radio" name="q2" value="correct" /> Rosa pastel</label>
-      <label><input type="radio" name="q2" value="wrong" /> Verde militar</label>
-      <label><input type="radio" name="q2" value="wrong" /> Azul marino</label>
+      <label><input type="radio" name="q2" value="correct" /> Abrazarme sin soltarme</label>
+      <label><input type="radio" name="q2" value="wrong" /> Llevarme a cenar</label>
+      <label><input type="radio" name="q2" value="wrong" /> Tomarme fotos</label>
+      <label><input type="radio" name="q2" value="wrong" /> Dormir conmigo</label>
+    </div>
+    <button onclick="nextQuestion('q2','q3')">Siguiente</button>
+  </div>
+
+  <div class="question-box" id="q3">
+    <div class="question">¿Qué dijiste que sentías cuando te tocaba?</div>
+    <div class="options">
+      <label><input type="radio" name="q3" value="correct" /> Que el mundo se detenía</label>
+      <label><input type="radio" name="q3" value="wrong" /> Que te daba risa</label>
+      <label><input type="radio" name="q3" value="wrong" /> Que te daba miedo</label>
+      <label><input type="radio" name="q3" value="wrong" /> Que no sentías nada</label>
     </div>
     <button onclick="showResult()">Enviar</button>
   </div>
@@ -127,12 +140,14 @@
     function showResult() {
       const q1 = document.querySelector('input[name="q1"]:checked')?.value;
       const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+      const q3 = document.querySelector('input[name="q3"]:checked')?.value;
       let correct = 0;
       if (q1 === "correct") correct++;
       if (q2 === "correct") correct++;
+      if (q3 === "correct") correct++;
 
       let mensaje = "";
-      if (correct === 2) {
+      if (correct === 3) {
         mensaje = `<div class="mensaje-final">
           <p>✨ Lo recordaste todo. Cada latido, cada instante. No hay duda: tú me conoces como nadie. Y eso merece algo más que un resultado... merece una carta que no se borra.</p>
         </div>`;
