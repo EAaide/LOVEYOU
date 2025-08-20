@@ -1,173 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Latidos 💓</title>
+  <meta charset="UTF-8">
+  <title>Quiz Romántico</title>
   <style>
     body {
-      margin: 0;
+      background-color: #0d0d0d;
+      color: #e0d4f7;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #ffe4e1, #fff0f5);
-      overflow-x: hidden;
-    }
-    header {
-      background: #ffb6c1;
       padding: 20px;
-      text-align: center;
-      font-size: 2em;
-      color: #6b0f1a;
     }
-    iframe {
-      display: block;
-      margin: 20px auto;
+    h1, h2 {
+      color: #b084f7;
+      text    }
+    .quiz-container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #1a1a1a;
+      padding: 20px;
       border-radius: 10px;
-      width: 90%;
-      max-width: 560px;
-      height: 315px;
-      border: none;
-    }
-    .heart {
-      position: fixed;
-      top: -50px;
-      font-size: 24px;
-      color: #ff1493;
-      animation: fall 6s linear infinite;
-    }
-    @keyframes fall {
-      0% {top: -50px; opacity: 1;}
-      100% {top: 100vh; opacity: 0;}
-    }
-    .question-box {
-      display: none;
-      max-width: 600px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease;
+      border: 2px solid #b084f7;
     }
     .question {
-      font-size: 1.2em;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .question h3 {
+      color: #d8b4ff;
     }
     .options label {
       display: block;
-      margin: 8px 0;
-    }
-    button {
-      background: #ff69b4;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+      margin: 5px 0;
       cursor: pointer;
-      margin-top: 10px;
     }
-    .mensaje-final, .carta-final {
-      max-width: 600px;
-      margin: 30px auto;
-      background: #fff;
+    .decoracion {
+      text-align: center;
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    .carta-final {
+      background-color: #2a2a2a;
+      border: 2px dashed #b084f7;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease;
-      font-size: 1.1em;
-      color: #6b0f1a;
+      margin-top: 30px;
+      border-radius: 10px;
     }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+    .carta-final p {
+      color: #e0d4f7;
+      line-height: 1.6;
+    }
+    .carta-final strong {
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
-  <header>Latidos 💓</header>
-  <iframe src="https://www.youtube.com/embed/V7q1jN7k5lg" allowfullscreen></iframe>
+  <div class="quiz-container">
+    <h1>💜🖤 Quiz de Nosotras 🖤💜</h1>
 
-  <!-- Corazones animados -->
-  <div class="heart" style="left: 10%;">💖</div>
-  <div class="heart" style="left: 30%;">💗</div>
-  <div class="heart" style="left: 50%;">💘</div>
-  <div class="heart" style="left: 70%;">💞</div>
-  <div class="heart" style="left: 90%;">💕</div>
+    <div class="decoracion">⚽🖤💜⚽🖤💜⚽</div>
 
-  <!-- Preguntas -->
-  <div class="question-box" id="q1">
-    <div class="question">¿Qué parte de mí dijiste que era tu lugar favorito?</div>
-    <div class="options">
-      <label><input type="radio" name="q1" value="correct" /> Mis clavículas</label>
-      <label><input type="radio" name="q1" value="wrong" /> Mis ojos</label>
-      <label><input type="radio" name="q1" value="wrong" /> Mis manos</label>
-      <label><input type="radio" name="q1" value="wrong" /> Mi voz</label>
+    <div class="question">
+      <h3>¿En dónde fue nuestro primer beso?</h3>
+      <div class="options">
+        <label><input type="radio" name="q1"> En un parque</label>
+        <label><input type="radio" name="q1"> En un cine</label>
+        <label><input type="radio" name="q1"> En un 7eleven</label>
+        <label><input type="radio" name="q1"> En tu casa</label>
+      </div>
     </div>
-    <button onclick="nextQuestion('q1','q2')">Siguiente</button>
-  </div>
 
-  <div class="question-box" id="q2">
-    <div class="question">¿Qué dijiste que querías hacer cuando me vieras de nuevo?</div>
-    <div class="options">
-      <label><input type="radio" name="q2" value="correct" /> Abrazarme sin soltarme</label>
-      <label><input type="radio" name="q2" value="wrong" /> Llevarme a cenar</label>
-      <label><input type="radio" name="q2" value="wrong" /> Tomarme fotos</label>
-      <label><input type="radio" name="q2" value="wrong" /> Dormir conmigo</label>
+    <div class="question">
+      <h3>¿En dónde nos conocimos por primera vez?</h3>
+      <div class="options">
+        <label><input type="radio" name="q2"> En una cafetería</label>
+        <label><input type="radio" name="q2"> En una fiesta</label>
+        <label><input type="radio" name="q2"> En una cancha de fútbol</label>
+        <label><input type="radio" name="q2"> En el trabajo</label>
+      </div>
     </div>
-    <button onclick="nextQuestion('q2','q3')">Siguiente</button>
-  </div>
 
-  <div class="question-box" id="q3">
-    <div class="question">¿Qué dijiste que sentías cuando te tocaba?</div>
-    <div class="options">
-      <label><input type="radio" name="q3" value="correct" /> Que el mundo se detenía</label>
-      <label><input type="radio" name="q3" value="wrong" /> Que te daba risa</label>
-      <label><input type="radio" name="q3" value="wrong" /> Que te daba miedo</label>
-      <label><input type="radio" name="q3" value="wrong" /> Que no sentías nada</label>
+    <div class="question">
+      <h3>¿Quién estaba locamente enamorada de la otra desde el primer día que hablamos?</h3>
+      <div class="options">
+        <label><input type="radio" name="q3"> Alma de Aidé</label>
+        <label><input type="radio" name="q3"> Las dos al mismo tiempo</label>
+        <label><input type="radio" name="q3"> Aidé de Alma... (Y todavía lo estoy)</label>
+        <label><input type="radio" name="q3"> Ninguna, fue gradual</label>
+      </div>
     </div>
-    <button onclick="showResult()">Enviar</button>
+
+    <div class="question">
+      <h3>¿Cuál fue el primer regalo de cumpleaños que te di?</h3>
+      <div class="options">
+        <label><input type="radio" name="q4"> Una pulsera con tu nombre</label>
+        <label><input type="radio" name="q4"> Una carta escrita a mano</label>
+        <label><input type="radio" name="q4"> Un dije de corazón con mensaje oculto</label>
+        <label><input type="radio" name="q4"> Un peluche de gato</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>¿Qué significado tiene el tatuaje 00:00 que me realicé por ti?</h3>
+      <div class="options">
+        <label><input type="radio" name="q5"> El día que nos conocimos</label>
+        <label><input type="radio" name="q5"> El inicio de nuestra relación</label>
+        <label><input type="radio" name="q5"> Nuevos comienzos y despertar espiritual</label>
+        <label><input type="radio" name="q5"> El momento de nuestro primer beso</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>¿Qué animal odiabas y ahora amas a uno?</h3>
+      <div class="options">
+        <label><input type="radio" name="q6"> Perro, por ruidosos</label>
+        <label><input type="radio" name="q6"> Conejo, por alérgica</label>
+        <label><input type="radio" name="q6"> Gato, Bonye</label>
+        <label><input type="radio" name="q6"> Tortuga, por lentas</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>¿De quién es la frase del rompecabezas que te di?</h3>
+      <div class="options">
+        <label><input type="radio" name="q7"> Mario Benedetti</label>
+        <label><input type="radio" name="q7"> Gabriel García Márquez</label>
+        <label><input type="radio" name="q7"> Julio Cortázar</label>
+        <label><input type="radio" name="q7"> Isabel Allende</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>El 7 de diciembre del 2022 te di una carta y te dije que no podrías sacarla, ¿dentro de qué estaba?</h3>
+      <div class="options">
+        <label><input type="radio" name="q8"> Una caja de madera</label>
+        <label><input type="radio" name="q8"> Un globo</label>
+        <label><input type="radio" name="q8"> Un huevo</label>
+        <label><input type="radio" name="q8"> Una botella</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>¿En qué mes y año nos casamos en una kermés?</h3>
+      <div class="options">
+        <label><input type="radio" name="q9"> Marzo 2023</label>
+        <label><input type="radio" name="q9"> Enero 2023</label>
+        <label><input type="radio" name="q9"> Febrero 2023</label>
+        <label><input type="radio" name="q9"> Diciembre 2022</label>
+      </div>
+    </div>
+
+    <div class="carta-final">
+      <h2>💌 No sé amar en silencio</h2>
+      <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
+      <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
+      <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
+      <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
+      <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
+    </div>
+
+    <div class="decoracion">⚽💜🖤⚽💜🖤⚽</div>
   </div>
-
-  <!-- Resultado y carta -->
-  <div id="resultado"></div>
-
-  <script>
-    document.getElementById("q1").style.display = "block";
-
-    function nextQuestion(current, next) {
-      document.getElementById(current).style.display = "none";
-      document.getElementById(next).style.display = "block";
-    }
-
-    function showResult() {
-      const q1 = document.querySelector('input[name="q1"]:checked')?.value;
-      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
-      const q3 = document.querySelector('input[name="q3"]:checked')?.value;
-      let correct = 0;
-      if (q1 === "correct") correct++;
-      if (q2 === "correct") correct++;
-      if (q3 === "correct") correct++;
-
-      let mensaje = "";
-      if (correct === 3) {
-        mensaje = `<div class="mensaje-final">
-          <p>✨ Lo recordaste todo. Cada latido, cada instante. No hay duda: tú me conoces como nadie. Y eso merece algo más que un resultado... merece una carta que no se borra.</p>
-        </div>`;
-      } else {
-        mensaje = `<div class="mensaje-final">
-          <p>💫 Puede que no todo haya salido perfecto, pero eso no importa. Lo que importa es que estás aquí, jugando conmigo, recordando. Y eso ya es amor. Esta carta es para ti, sin importar el marcador.</p>
-        </div>`;
-      }
-
-      const carta = `<div class="carta-final">
-        <h2>💌 No sé amar en silencio</h2>
-        <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
-        <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
-        <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
-        <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
-        <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
-      </div>`;
-
-      document.getElementById("resultado").innerHTML = mensaje + carta;
-    }
-  </script>
 </body>
 </html>
