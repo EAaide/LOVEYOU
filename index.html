@@ -2,190 +2,217 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>⚽💜🖤 Latidos del Corazón 🖤💜⚽</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Latidos del Corazón ⚽🖤💜</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom right, #f8d7ff, #d0b0ff);
-      color: #2c003e;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fce4ec, #d1c4e9);
+      color: #2e2e2e;
       text-align: center;
       padding: 20px;
       overflow-x: hidden;
-      position: relative;
     }
     h1 {
       font-size: 2.5em;
+      color: black;
       margin-bottom: 10px;
     }
-    .question {
-      margin: 20px 0;
-    }
-    .answers button {
-      margin: 5px;
-      padding: 10px 20px;
-      font-size: 1em;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #6a0dad;
-      color: white;
-    }
-    #video {
-      margin: 20px 0;
-    }
-    #quiz {
-      min-height: 200px;
-      margin-top: 20px;
-      padding: 10px;
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #2c003e;
+    .pregunta {
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #ffffff;
       border-radius: 10px;
-      z-index: 1;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-size: 1.1em;
       position: relative;
     }
-    #openLetter {
+    iframe {
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+    .carta-final {
       display: none;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #fff0f5;
+      border-left: 5px solid black;
+      border-right: 5px solid purple;
+      border-radius: 10px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1em;
+    }
+    .carta-final h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    #abrirCarta {
       margin-top: 30px;
       padding: 15px 30px;
       font-size: 1.2em;
-      background-color: #6a0dad;
+      background-color: #6a1b9a;
       color: white;
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      animation: pulse 2s infinite;
+      animation: latido 1.5s infinite;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
     }
-    #letter {
-      display: none;
-      margin-top: 30px;
+    .mensaje-final {
+      font-weight: bold;
       font-size: 1.2em;
-      background-color: #fff0ff;
-      color: #2c003e;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .falling {
-      position: absolute;
-      font-size: 2em;
-      pointer-events: none;
-      animation: fall 3s linear forwards;
-      z-index: 0;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-50px) scale(1); opacity: 1; }
-      100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-    }
-    .disintegrate {
-      animation: disintegrate 2s forwards;
-    }
-    @keyframes disintegrate {
-      0% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(0); }
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>⚽💜🖤 Latidos del Corazón 🖤💜⚽</h1>
-  <div id="video">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/V7q1jN7k5lg?autoplay=0" frameborder="0" allowfullscreen></iframe>
+  <h1>⚽🖤💜 Latidos del Corazón</h1>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/V7q1jN7k5lg?autoplay=0" 
+    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen></iframe>
+
+  <div id="contenedor-preguntas"></div>
+
+  <button id="abrirCarta">Abrir carta 💌</button>
+
+  <div class="mensaje-final" id="mensajeFinal"></div>
+
+  <div class="carta-final" id="cartaFinal">
+    <h2>💌 No sé amar en silencio</h2>
+    <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
+    <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
+    <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
+    <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
+    <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
   </div>
-
-  <div id="quiz"></div>
-  <button id="openLetter">Abrir carta</button>
-  <div id="letter"></div>
-
   <script>
-    const questions = [
-      { q: "¿En dónde fue nuestro primer beso?", correct: "En un 7eleven", wrong: ["En un parque", "En el cine"] },
-      { q: "¿En dónde nos conocimos por primera vez?", correct: "En una cancha de fútbol", wrong: ["En la escuela", "En una fiesta"] },
-      { q: "¿Quien estaba locamente enamorada de la otra desde el primer día que hablamos?", correct: "Aidé de Alma... (Y todavía lo estoy)", wrong: ["Alma de Aidé", "Ambas al mismo tiempo"] },
-      { q: "¿Cuál fue el primer regalo de cumpleaños que te di?", correct: "Un dije de corazón con mensaje oculto", wrong: ["Un peluche", "Una carta"] },
-      { q: "¿Qué significado tiene el tatuaje 00:00 que me realice por ti?", correct: "nuevos comienzos y despertar espiritual.", wrong: ["Nuestro aniversario", "Un pacto secreto"] },
-      { q: "¿Qué animal odiabas y ahora amas a uno?", correct: "Gato, Bonye", wrong: ["Perro, Max", "Conejo, Luna"] },
-      { q: "¿De quien es la frase del rompecabezas que te di?", correct: "Julio cortázar", wrong: ["Mario Benedetti", "Pablo Neruda"] },
-      { q: "El 7 de diciembre del 2022 te di una carta y te dije que no podrías sacarla, ¿Dentro de que estaba?", correct: "Un huevo", wrong: ["Una caja", "Un sobre"] },
-      { q: "¿En qué mes y año nos casamos en una kermes?", correct: "febrero 2023", wrong: ["marzo 2023", "enero 2023"] }
+    const preguntas = [
+      {
+        texto: "¿En dónde fue nuestro primer beso?",
+        correcta: "En un 7eleven"
+      },
+      {
+        texto: "¿En dónde nos conocimos por primera vez?",
+        correcta: "En una cancha de fútbol"
+      },
+      {
+        texto: "¿Quien estaba locamente enamorada de la otra desde el primer día que hablamos?",
+        correcta: "Aidé de Alma... (Y todavía lo estoy)"
+      },
+      {
+        texto: "¿Cuál fue el primer regalo de cumpleaños que te di?",
+        correcta: "Un dije de corazón con mensaje oculto"
+      },
+      {
+        texto: "¿Qué significado tiene el tatuaje 00:00 que me realice por ti?",
+        correcta: "nuevos comienzos y despertar espiritual."
+      },
+      {
+        texto: "¿Qué animal odiabas y ahora amas a uno?",
+        correcta: "Gato, Bonye"
+      },
+      {
+        texto: "¿De quien es la frase del rompecabezas que te di?",
+        correcta: "Julio cortázar"
+      },
+      {
+        texto: "El 7 de diciembre del 2022 te di una carta y te dije que no podrías sacarla, ¿Dentro de que estaba?",
+        correcta: "Un huevo"
+      },
+      {
+        texto: "¿En qué mes y año nos casamos en una kermes?",
+        correcta: "febrero 2023"
+      }
     ];
 
-    let current = 0;
-    let correctAnswers = 0;
+    let respuestasCorrectas = 0;
 
-    function createFalling(symbol, slow = false, disintegrate = false) {
-      const el = document.createElement("div");
-      el.className = "falling";
-      el.textContent = symbol;
-      el.style.left = Math.random() * window.innerWidth + "px";
-      el.style.animationDuration = slow ? "5s" : "3s";
-      if (disintegrate) el.classList.add("disintegrate");
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 5000);
-    }
-
-    function rainHearts() {
-      for (let i = 0; i < 20; i++) {
-        createFalling("🖤", true);
-        createFalling("💜");
+    function lluvia(tipo) {
+      const emojis = tipo === "bien" ? ["🖤", "💜"] : ["😢"];
+      for (let i = 0; i < 30; i++) {
+        const el = document.createElement("div");
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.position = "fixed";
+        el.style.left = Math.random() * window.innerWidth + "px";
+        el.style.top = "-30px";
+        el.style.fontSize = "2em";
+        el.style.zIndex = 9999;
+        el.style.animation = "caer 2s linear forwards";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 2000);
       }
     }
 
-    function rainSad() {
-      for (let i = 0; i < 15; i++) {
-        createFalling("😢", false, true);
-      }
+    function mostrarPreguntas() {
+      const contenedor = document.getElementById("contenedor-preguntas");
+      preguntas.forEach((pregunta, index) => {
+        const div = document.createElement("div");
+        div.className = "pregunta";
+        div.innerHTML = `<strong>Pregunta ${index + 1}:</strong> ${pregunta.texto}<br>
+          <input type="text" id="respuesta${index}" placeholder="Escribe tu respuesta aquí" />
+          <button onclick="validar(${index})">Responder</button>`;
+        contenedor.appendChild(div);
+      });
     }
 
-    function showQuestion() {
-      rainHearts();
-      const q = questions[current];
-      const container = document.getElementById("quiz");
-      container.innerHTML = `
-        <div class="question"><strong>${q.q}</strong></div>
-        <div class="answers">
-          <button onclick="answer(true)">${q.correct}</button>
-          <button onclick="answer(false)">${q.wrong[0]}</button>
-          <button onclick="answer(false)">${q.wrong[1]}</button>
-        </div>
-      `;
-    }
-
-    function answer(isCorrect) {
-      if (!isCorrect) rainSad();
-      if (isCorrect) correctAnswers++;
-      current++;
-      if (current < questions.length) {
-        showQuestion();
+    function validar(index) {
+      const input = document.getElementById(`respuesta${index}`);
+      const respuesta = input.value.trim();
+      const correcta = preguntas[index].correcta;
+      if (respuesta.toLowerCase() === correcta.toLowerCase()) {
+        respuestasCorrectas++;
+        lluvia("bien");
       } else {
-        document.getElementById("openLetter").style.display = "inline-block";
+        lluvia("mal");
       }
+      input.disabled = true;
+      input.nextElementSibling.disabled = true;
     }
 
-    document.getElementById("openLetter").onclick = function () {
+    document.getElementById("abrirCarta").onclick = () => {
+      const mensaje = respuestasCorrectas === preguntas.length
+        ? "Lo recordaste todo. Cada latido, cada instante. No hay duda: tú me conoces como nadie. Y eso merece algo más que un resultado... merece una carta que no se borra."
+        : "Puede que no todo haya salido perfecto, pero eso no importa. Lo que importa es que estás aquí, jugando conmigo, recordando. Y eso ya es amor. Esta carta es para ti, sin importar el marcador";
+      document.getElementById("mensajeFinal").textContent = mensaje;
+      document.getElementById("cartaFinal").style.display = "block";
+      explotar();
+    };
+
+    function explotar() {
+      const emojis = ["⚽", "🖤", "💜", "🎉"];
       for (let i = 0; i < 50; i++) {
-        createFalling("⚽");
-        createFalling("💜");
-        createFalling("🖤");
-        createFalling("🎉");
+        const el = document.createElement("div");
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.position = "fixed";
+        el.style.left = Math.random() * window.innerWidth + "px";
+        el.style.top = Math.random() * window.innerHeight + "px";
+        el.style.fontSize = "2em";
+        el.style.zIndex = 9999;
+        el.style.animation = "explotar 1.5s ease-out forwards";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1500);
       }
-      const letter = document.getElementById("letter");
-      let message = "";
-      if (correctAnswers === questions.length) {
-        message = "Lo recordaste todo. Cada latido, cada instante. No hay duda: tú me conoces como nadie. Y eso merece algo más que un resultado... merece una carta que no se borra.";
-      } else {
-        message = "Puede que no todo haya salido perfecto, pero eso no importa. Lo que importa es que estás aquí, jugando conmigo, recordando. Y eso ya es amor. Esta carta es para ti, sin importar el marcador";
-      }
+    }
 
-      letter.innerHTML = `
-        <p>${message}</p>
-        <div class="carta-final">
-  <h2>💌 No sé amar en silencio</h2>
-  <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
-  <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
-  <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
-  <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
-  <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
-</div>
+    window.onload = mostrarPreguntas;
+  </script>
+
+  <style>
+    @keyframes caer {
+      to { transform: translateY(100vh); opacity: 0; }
+    }
+    @keyframes explotar {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+  </style>
+</body>
+</html>
