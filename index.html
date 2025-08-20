@@ -1,170 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Juego de Amor</title>
+  <meta charset="UTF-8" />
+  <title>Latidos 💓</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #1a1a1a;
-      color: #f0f0f0;
-      text-align: center;
-      padding: 2rem;
+      background: #fff0f5;
       overflow-x: hidden;
     }
-
-    .pregunta {
-      margin: 2rem 0;
+    header {
+      background: #ffb6c1;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      color: #6b0f1a;
     }
-
-    input[type="text"] {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 6px;
+    iframe {
+      display: block;
+      margin: 20px auto;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 560px;
+      height: 315px;
       border: none;
-      width: 80%;
-      max-width: 400px;
     }
-
-    button {
-      margin-top: 1rem;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #a64ca6;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #8e3b8e;
-    }
-
-    .final, .carta-final {
-      margin-top: 3rem;
-      padding: 2rem;
-      border-radius: 12px;
-      background: #2c2c2c;
-      box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
-      animation: aparecer 2s ease-in-out forwards;
-      opacity: 0;
-      display: none;
-    }
-
-    @keyframes aparecer {
-      to { opacity: 1; transform: scale(1); }
-    }
-
     .heart {
       position: fixed;
-      bottom: -50px;
-      font-size: 2rem;
-      animation: flotar 4s linear infinite;
-      pointer-events: none;
-      z-index: 9999;
+      top: -50px;
+      font-size: 24px;
+      color: #ff1493;
+      animation: fall 5s linear infinite;
     }
-
-    .heart.morado { color: #a64ca6; }
-    .heart.negro { color: #222; }
-
-    @keyframes flotar {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-600px) rotate(360deg); opacity: 0; }
+    @keyframes fall {
+      0% {top: -50px; opacity: 1;}
+      100% {top: 100vh; opacity: 0;}
+    }
+    .question-box {
+      display: none;
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+    }
+    button {
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .mensaje-final, .carta-final {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+      font-size: 1.1em;
+      color: #6b0f1a;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
   </style>
 </head>
 <body>
+  <header>Latidos 💓</header>
+  <iframe src="https://www.youtube.com/embed/YOUTUBE_ID_AQUI" allowfullscreen></iframe>
 
-  <h1>💜 Juego de Amor 💜</h1>
+  <!-- Corazones animados -->
+  <div class="heart" style="left: 10%;">💖</div>
+  <div class="heart" style="left: 30%;">💗</div>
+  <div class="heart" style="left: 50%;">💘</div>
+  <div class="heart" style="left: 70%;">💞</div>
+  <div class="heart" style="left: 90%;">💕</div>
 
-  <div class="pregunta"><p>¿En dónde fue nuestro primer beso?</p><input type="text" id="p1"></div>
-  <div class="pregunta"><p>¿En dónde nos conocimos por primera vez?</p><input type="text" id="p2"></div>
-  <div class="pregunta"><p>¿Quién estaba locamente enamorada de la otra desde el primer día que hablamos?</p><input type="text" id="p3"></div>
-  <div class="pregunta"><p>¿Cuál fue el primer regalo de cumpleaños que te di?</p><input type="text" id="p4"></div>
-  <div class="pregunta"><p>¿Qué significado tiene el tatuaje 00:00 que me realicé por ti?</p><input type="text" id="p5"></div>
-  <div class="pregunta"><p>¿Qué animal odiabas y ahora amas a uno?</p><input type="text" id="p6"></div>
-  <div class="pregunta"><p>¿De quién es la frase del rompecabezas que te di?</p><input type="text" id="p7"></div>
-  <div class="pregunta"><p>El 7 de diciembre del 2022 te di una carta y te dije que no podrías sacarla, ¿Dentro de qué estaba?</p><input type="text" id="p8"></div>
-  <div class="pregunta"><p>¿En qué mes y año nos casamos en una kermés?</p><input type="text" id="p9"></div>
-
-  <button onclick="evaluar()">Enviar respuestas</button>
-
-  <div class="final" id="final-correcto">
-    <h2>✨ ¡Perfecto! Has respondido todo como si fueras la autora de mi corazón 💘</h2>
-    <p>Tu memoria es tan precisa que sospecho que tienes acceso a mi diario secreto... o a mi carpeta de memes románticos 🤭</p>
-    <p>Gracias por jugar, por amar, por estar. Esta carta es solo un reflejo de lo que siento cada día: <strong>te admiro, te deseo, te elijo</strong>.</p>
-    <button onclick="mostrarCarta()">Ver carta final 💌</button>
+  <!-- Preguntas -->
+  <div class="question-box" id="q1">
+    <div class="question">¿Cuál fue la primera canción que escuchamos juntas?</div>
+    <div class="options">
+      <label><input type="radio" name="q1" value="correct" /> La que pusiste en el coche esa noche</label>
+      <label><input type="radio" name="q1" value="wrong" /> Despacito</label>
+      <label><input type="radio" name="q1" value="wrong" /> Bohemian Rhapsody</label>
+    </div>
+    <button onclick="nextQuestion('q1','q2')">Siguiente</button>
   </div>
 
-  <div class="final" id="final-error">
-    <h2>🧐 ¡Casi casi! Pero hubo uno o dos tropiezos en el camino...</h2>
-    <p>No te preocupes, no te voy a quitar puntos por eso. Aunque... podrías compensarlo con un beso extra 😘</p>
-    <p>Lo importante es que jugaste, que te reíste, y que estás aquí. Eso ya es victoria.</p>
-    <button onclick="mostrarCarta()">Ver carta final 💌</button>
+  <div class="question-box" id="q2">
+    <div class="question">¿Qué color dijiste que te recuerda a mí?</div>
+    <div class="options">
+      <label><input type="radio" name="q2" value="correct" /> Rosa pastel</label>
+      <label><input type="radio" name="q2" value="wrong" /> Verde militar</label>
+      <label><input type="radio" name="q2" value="wrong" /> Azul marino</label>
+    </div>
+    <button onclick="showResult()">Enviar</button>
   </div>
 
-  <div class="carta-final" id="carta">
-    <h2>💌 No sé amar en silencio</h2>
-    <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
-    <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
-    <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
-    <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
-    <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
-  </div>
+  <!-- Resultado y carta -->
+  <div id="resultado"></div>
 
   <script>
-    function evaluar() {
-      const respuestas = [
-        document.getElementById('p1').value.trim().toLowerCase(),
-        document.getElementById('p2').value.trim().toLowerCase(),
-        document.getElementById('p3').value.trim().toLowerCase(),
-        document.getElementById('p4').value.trim().toLowerCase(),
-        document.getElementById('p5').value.trim().toLowerCase(),
-        document.getElementById('p6').value.trim().toLowerCase(),
-        document.getElementById('p7').value.trim().toLowerCase(),
-        document.getElementById('p8').value.trim().toLowerCase(),
-        document.getElementById('p9').value.trim().toLowerCase()
-      ];
+    document.getElementById("q1").style.display = "block";
 
-      const correctas = [
-        'en un 7eleven',
-        'en una cancha de fútbol',
-        'aidé de alma... (y todavía lo estoy)',
-        'un dije de corazón con mensaje oculto',
-        'nuevos comienzos y despertar espiritual.',
-        'gato, bonye',
-        'julio cortázar',
-        'un huevo',
-        'febrero 2023'
-      ];
+    function nextQuestion(current, next) {
+      document.getElementById(current).style.display = "none";
+      document.getElementById(next).style.display = "block";
+    }
 
-      const esCorrecto = respuestas.every((r, i) => r === correctas[i]);
+    function showResult() {
+      const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+      let correct = 0;
+      if (q1 === "correct") correct++;
+      if (q2 === "correct") correct++;
 
-      if (esCorrecto) {
-        document.getElementById('final-correcto').style.display = 'block';
+      let mensaje = "";
+      if (correct === 2) {
+        mensaje = `<div class="mensaje-final">
+          <p>✨ Lo recordaste todo. Cada latido, cada instante. No hay duda: tú me conoces como nadie. Y eso merece algo más que un resultado... merece una carta que no se borra.</p>
+        </div>`;
       } else {
-        document.getElementById('final-error').style.display = 'block';
+        mensaje = `<div class="mensaje-final">
+          <p>💫 Puede que no todo haya salido perfecto, pero eso no importa. Lo que importa es que estás aquí, jugando conmigo, recordando. Y eso ya es amor. Esta carta es para ti, sin importar el marcador.</p>
+        </div>`;
       }
-    }
 
-    function mostrarCarta() {
-      document.getElementById('carta').style.display = 'block';
-      lanzarCorazones();
-    }
+      const carta = `<div class="carta-final">
+        <h2>💌 No sé amar en silencio</h2>
+        <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
+        <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
+        <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
+        <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
+        <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
+      </div>`;
 
-    function lanzarCorazones() {
-      const colores = ['morado', 'negro'];
-      for (let i = 0; i < 30; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart', colores[Math.floor(Math.random() * colores.length)]);
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.innerText = '❤';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
-      }
+      document.getElementById("resultado").innerHTML = mensaje + carta;
     }
   </script>
-
 </body>
 </html>
