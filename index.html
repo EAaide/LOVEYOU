@@ -2,163 +2,169 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Entre pistas y latidos 💜🖤⚽</title>
+  <title>Juego de Amor</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #1c1c1c;
-      color: #fff;
-      padding: 20px;
-      background-image: url('foto.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      backdrop-filter: blur(4px);
-    }
-    h1, h2 {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
       text-align: center;
-      color: #ffccff;
-      text-shadow: 1px 1px 3px #000;
+      padding: 2rem;
+      overflow-x: hidden;
     }
-    .question {
-      background: rgba(0,0,0,0.6);
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+
+    .pregunta {
+      margin: 2rem 0;
     }
-    button {
-      background-color: #6a0dad;
-      color: white;
+
+    input[type="text"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
       border: none;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #a64ca6;
+      color: white;
       cursor: pointer;
-      width: 100%;
     }
+
     button:hover {
-      background-color: #8e24aa;
+      background-color: #8e3b8e;
     }
-    .hidden {
+
+    .final, .carta-final {
+      margin-top: 3rem;
+      padding: 2rem;
+      border-radius: 12px;
+      background: #2c2c2c;
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+      animation: aparecer 2s ease-in-out forwards;
+      opacity: 0;
       display: none;
     }
-    .final {
-      background: rgba(0,0,0,0.8);
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 30px;
+
+    @keyframes aparecer {
+      to { opacity: 1; transform: scale(1); }
     }
-    iframe {
-      display: block;
-      margin: 20px auto;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 560px;
-      height: 315px;
+
+    .heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 2rem;
+      animation: flotar 4s linear infinite;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .heart.morado { color: #a64ca6; }
+    .heart.negro { color: #222; }
+
+    @keyframes flotar {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-600px) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <h1>🖤💜⚽ Entre pistas y latidos ⚽💜🖤</h1>
-  <p style="text-align:center;">Responde con el corazón. Si aciertas todo, desbloquearás algo muy especial...</p>
+  <h1>💜 Juego de Amor 💜</h1>
 
-  <!-- Canción embebida -->
-  <iframe src="https://www.youtube.com/embed/2vZ2zZzZzZ0" title="Tu jardín con enanitos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="pregunta"><p>¿En dónde fue nuestro primer beso?</p><input type="text" id="p1"></div>
+  <div class="pregunta"><p>¿En dónde nos conocimos por primera vez?</p><input type="text" id="p2"></div>
+  <div class="pregunta"><p>¿Quién estaba locamente enamorada de la otra desde el primer día que hablamos?</p><input type="text" id="p3"></div>
+  <div class="pregunta"><p>¿Cuál fue el primer regalo de cumpleaños que te di?</p><input type="text" id="p4"></div>
+  <div class="pregunta"><p>¿Qué significado tiene el tatuaje 00:00 que me realicé por ti?</p><input type="text" id="p5"></div>
+  <div class="pregunta"><p>¿Qué animal odiabas y ahora amas a uno?</p><input type="text" id="p6"></div>
+  <div class="pregunta"><p>¿De quién es la frase del rompecabezas que te di?</p><input type="text" id="p7"></div>
+  <div class="pregunta"><p>El 7 de diciembre del 2022 te di una carta y te dije que no podrías sacarla, ¿Dentro de qué estaba?</p><input type="text" id="p8"></div>
+  <div class="pregunta"><p>¿En qué mes y año nos casamos en una kermés?</p><input type="text" id="p9"></div>
 
-  <div id="quiz">
-    <div class="question" id="q1">
-      <p>¿En dónde fue nuestro primer beso?</p>
-      <button onclick="checkAnswer('q1', 'a')">a) En un 7eleven ✅</button>
-      <button onclick="checkAnswer('q1', 'b')">b) En un parque</button>
-      <button onclick="checkAnswer('q1', 'c')">c) En una fiesta</button>
-    </div>
+  <button onclick="evaluar()">Enviar respuestas</button>
 
-    <div class="question hidden" id="q2">
-      <p>¿En dónde nos conocimos por primera vez?</p>
-      <button onclick="checkAnswer('q2', 'a')">a) En una cancha de fútbol ✅</button>
-      <button onclick="checkAnswer('q2', 'b')">b) En el banco</button>
-      <button onclick="checkAnswer('q2', 'c')">c) En una cafetería</button>
-    </div>
-
-    <div class="question hidden" id="q3">
-      <p>¿Quién estaba locamente enamorada de la otra desde el primer día que hablamos?</p>
-      <button onclick="checkAnswer('q3', 'a')">a) Aidé de Alma... (Y todavía lo estoy) ✅</button>
-      <button onclick="checkAnswer('q3', 'b')">b) Las dos</button>
-      <button onclick="checkAnswer('q3', 'c')">c) Nadie</button>
-    </div>
-
-    <div class="question hidden" id="q4">
-      <p>¿Cuál fue el primer regalo de cumpleaños que te di?</p>
-      <button onclick="checkAnswer('q4', 'a')">a) Un dije de corazón con mensaje oculto ✅</button>
-      <button onclick="checkAnswer('q4', 'b')">b) Una carta</button>
-      <button onclick="checkAnswer('q4', 'c')">c) Un peluche</button>
-    </div>
-
-    <div class="question hidden" id="q5">
-      <p>¿Qué significado tiene el tatuaje 00:00 que me realicé por ti?</p>
-      <button onclick="checkAnswer('q5', 'a')">a) Nuevos comienzos y despertar espiritual ✅</button>
-      <button onclick="checkAnswer('q5', 'b')">b) Hora de dormir</button>
-      <button onclick="checkAnswer('q5', 'c')">c) Fin del mundo</button>
-    </div>
-
-    <div class="question hidden" id="q6">
-      <p>¿Qué animal odiabas y ahora amas a uno?</p>
-      <button onclick="checkAnswer('q6', 'a')">a) Gato, Bonye ✅</button>
-      <button onclick="checkAnswer('q6', 'b')">b) Perro</button>
-      <button onclick="checkAnswer('q6', 'c')">c) Conejo</button>
-    </div>
-
-    <div class="question hidden" id="q7">
-      <p>¿De quién es la frase del rompecabezas que te di?</p>
-      <button onclick="checkAnswer('q7', 'a')">a) Julio Cortázar ✅</button>
-      <button onclick="checkAnswer('q7', 'b')">b) Pablo Neruda</button>
-      <button onclick="checkAnswer('q7', 'c')">c) Mario Benedetti</button>
-    </div>
-
-    <div class="question hidden" id="q8">
-      <p>El 7 de diciembre del 2022 te di una carta y te dije que no podrías sacarla, ¿Dentro de qué estaba?</p>
-      <button onclick="checkAnswer('q8', 'a')">a) Un huevo ✅</button>
-      <button onclick="checkAnswer('q8', 'b')">b) Una caja</button>
-      <button onclick="checkAnswer('q8', 'c')">c) Un sobre</button>
-    </div>
-
-    <div class="question hidden" id="q9">
-      <p>¿En qué mes y año nos casamos en una kermés?</p>
-      <button onclick="checkAnswer('q9', 'a')">a) Febrero 2023 ✅</button>
-      <button onclick="checkAnswer('q9', 'b')">b) Marzo 2022</button>
-      <button onclick="checkAnswer('q9', 'c')">c) Enero 2024</button>
-    </div>
+  <div class="final" id="final-correcto">
+    <h2>✨ ¡Perfecto! Has respondido todo como si fueras la autora de mi corazón 💘</h2>
+    <p>Tu memoria es tan precisa que sospecho que tienes acceso a mi diario secreto... o a mi carpeta de memes románticos 🤭</p>
+    <p>Gracias por jugar, por amar, por estar. Esta carta es solo un reflejo de lo que siento cada día: <strong>te admiro, te deseo, te elijo</strong>.</p>
+    <button onclick="mostrarCarta()">Ver carta final 💌</button>
   </div>
 
-  <div id="final-success" class="final hidden">
-    <h2>💌✨ Carta desbloqueada ✨💌</h2>
-    <p>
-      Agradezco cada día que hemos pasado juntas. Hemos vivido tantas cosas... ¿Recuerdas?<br>
-      Tu primer cumpleaños, el globo aerostático, la experiencia en el museo de asesinos seriales, mi cumpleaños en Zacatlán de las manzanas, ser campeonas de un torneo de fútbol juntas, despertar por primera vez abrazadas, amarnos cada día más, ir superando día con día los obstáculos hasta llegar a plantearnos que queremos casarnos y estar juntas por siempre.<br><br>
-      Gracias, amor, por cada momento vivido. Eres sin duda la persona con la que quiero pasar el resto de mis días.<br><br>
-      Y recuerda...<br>
-      <strong>Estábamos sin buscarnos, pero sabiendo que estábamos para encontrarnos.</strong><br><br>
-      Te amo. 🖤💜⚽
-    </p>
+  <div class="final" id="final-error">
+    <h2>🧐 ¡Casi casi! Pero hubo uno o dos tropiezos en el camino...</h2>
+    <p>No te preocupes, no te voy a quitar puntos por eso. Aunque... podrías compensarlo con un beso extra 😘</p>
+    <p>Lo importante es que jugaste, que te reíste, y que estás aquí. Eso ya es victoria.</p>
+    <button onclick="mostrarCarta()">Ver carta final 💌</button>
+  </div>
+
+  <div class="carta-final" id="carta">
+    <h2>💌 No sé amar en silencio</h2>
+    <p>Si este juego fue una excusa, entonces que me condenen por usarla. Porque cada pregunta, cada imagen, cada línea... fue una forma desesperada de decirte: <strong>te amo con una fuerza que me desarma</strong>.</p>
+    <p>No quiero quererte bonito. Quiero quererte brutal. Con la intensidad de quien no sabe si mañana podrá volver a tocarte. Con la urgencia de quien siente que el mundo se detiene cuando tú sonríes.</p>
+    <p>Te amo como si mi cuerpo recordara tu nombre antes de aprender a hablar. Como si mi alma hubiera sido tallada con tus iniciales. Como si el universo me gritara que no hay otra, que no habrá otra, que no quiero otra.</p>
+    <p>Y si alguna vez dudas, vuelve aquí. Porque esta carta no se borra. Como yo, que no me borro de ti.</p>
+    <p><strong>Tuya, sin medida ni remedio,</strong><br>Neftis</p>
   </div>
 
   <script>
-    let correctAnswers = 0;
-    let currentQuestion = 1;
+    function evaluar() {
+      const respuestas = [
+        document.getElementById('p1').value.trim().toLowerCase(),
+        document.getElementById('p2').value.trim().toLowerCase(),
+        document.getElementById('p3').value.trim().toLowerCase(),
+        document.getElementById('p4').value.trim().toLowerCase(),
+        document.getElementById('p5').value.trim().toLowerCase(),
+        document.getElementById('p6').value.trim().toLowerCase(),
+        document.getElementById('p7').value.trim().toLowerCase(),
+        document.getElementById('p8').value.trim().toLowerCase(),
+        document.getElementById('p9').value.trim().toLowerCase()
+      ];
 
-    function checkAnswer(questionId, selected) {
-      const correct = {
-        q1: 'a', q2: 'a', q3: 'a', q4: 'a', q5: 'a',
-        q6: 'a', q7: 'a', q8: 'a', q9: 'a'
-      };
+      const correctas = [
+        'en un 7eleven',
+        'en una cancha de fútbol',
+        'aidé de alma... (y todavía lo estoy)',
+        'un dije de corazón con mensaje oculto',
+        'nuevos comienzos y despertar espiritual.',
+        'gato, bonye',
+        'julio cortázar',
+        'un huevo',
+        'febrero 2023'
+      ];
 
-      if (selected === correct[questionId]) {
-        correctAnswers++;
+      const esCorrecto = respuestas.every((r, i) => r === correctas[i]);
+
+      if (esCorrecto) {
+        document.getElementById('final-correcto').style.display = 'block';
+      } else {
+        document.getElementById('final-error').style.display = 'block';
       }
+    }
 
-      document.getElementById(questionId).classList.add('hidden');
-      currentQuestion++;
+    function mostrarCarta() {
+      document.getElementById('carta').style.display = 'block';
+      lanzarCorazones();
+    }
 
-      const nextId = '
+    function lanzarCorazones() {
+      const colores = ['morado', 'negro'];
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart', colores[Math.floor(Math.random() * colores.length)]);
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.innerText = '❤';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+    }
+  </script>
+
+</body>
+</html>
